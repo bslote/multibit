@@ -1475,8 +1475,10 @@ public class MultiBitFrame extends JFrame implements ViewSystem, ApplicationList
     }
     
     public void updateHeader() {
-        final BigInteger finalEstimatedBalance = this.bitcoinController.getModel().getActiveWalletEstimatedBalance();
-        final BigInteger finalAvailableToSpend = this.bitcoinController.getModel().getActiveWalletAvailableBalance();
+//        final BigInteger finalEstimatedBalance = this.bitcoinController.getModel().getActiveWalletEstimatedBalance();
+        final BigInteger finalEstimatedBalance = this.bitcoinController.getModel().getAggrigateWalletEstimatedBalance();
+//        final BigInteger finalAvailableToSpend = this.bitcoinController.getModel().getActiveWalletAvailableBalance();
+        final BigInteger finalAvailableToSpend = this.bitcoinController.getModel().getAggrigateWalletAvailableBalance();
         final boolean filesHaveBeenChangeByAnotherProcess = this.bitcoinController.getModel().getActivePerWalletModelData() != null && this.bitcoinController.getModel().getActivePerWalletModelData().isFilesHaveBeenChangedByAnotherProcess();
         final boolean isBusy = this.bitcoinController.getModel().getActivePerWalletModelData().isBusy();
         

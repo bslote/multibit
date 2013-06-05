@@ -261,6 +261,26 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
     }
 
     /**
+     * Get the aggrigate estimated balance of all wallets.
+     *
+     * @return
+     */
+    public BigInteger getAggrigateWalletEstimatedBalance() {
+        BigInteger balance = BigInteger.ZERO;
+        if (perWalletModelDataList.isEmpty()) {
+            return balance;
+        } else {
+            for (WalletData walletData : perWalletModelDataList) {
+                if (walletData.getWallet() != null) {
+                    balance = balance.add(walletData.getWallet().getBalance(BalanceType.ESTIMATED));
+                }
+            }
+
+            return balance;
+        }
+    }
+
+    /**
      * Get the available balance (plus boomeranged change) of the active wallet.
      *
      * @return
@@ -270,6 +290,26 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
             return BigInteger.ZERO;
         } else {
             return activeWalletModelData.getWallet().getBalance(BalanceType.AVAILABLE);
+        }
+    }
+
+    /**
+     * Get the aggrigate available balance (plus boomeranged change) of all wallets.
+     *
+     * @return
+     */
+    public BigInteger getAggrigateWalletAvailableBalance() {
+        BigInteger balance = BigInteger.ZERO;
+        if (perWalletModelDataList.isEmpty()) {
+            return balance;
+        } else {
+            for (WalletData walletData : perWalletModelDataList) {
+                if (walletData.getWallet() != null) {
+                    balance = balance.add(walletData.getWallet().getBalance(BalanceType.AVAILABLE));
+                }
+            }
+
+            return balance;
         }
     }
 
